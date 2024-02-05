@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             ..controllerStart(),
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 62,
+          toolbarHeight: 80,
           forceMaterialTransparency: true,
           centerTitle: true,
           title: Padding(
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              height: 50,
+              height: 70,
             ),
           ),
         ),

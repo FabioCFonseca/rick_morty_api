@@ -20,15 +20,12 @@ class CharactersSuccess extends StatelessWidget {
           'List of Characters',
           style: Theme.of(context).textTheme.displayLarge,
         ),
-        const SizedBox(
-          height: 30,
-        ),
         Expanded(
           child: ListView.builder(
               itemCount: provider.characters.length,
               itemBuilder: (context, index) {
                 bool isFavorite = provider.favoriteCharacters
-                        .contains(provider.characters[index]);
+                    .contains(provider.characters[index]);
                 return CustomCard(
                   isFavorite: isFavorite,
                   selectedList: provider.characters,

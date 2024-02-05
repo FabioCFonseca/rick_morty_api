@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 
 import '../../../utils/user_preferences.dart';
@@ -38,7 +40,6 @@ class CharacterListProvider extends ChangeNotifier {
             favoriteCharacters.add(character);
           }
         }
-        print(favoriteCharacters);
         providerStatus = CharacterListProviderState.success;
       },
     );
@@ -50,12 +51,12 @@ class CharacterListProvider extends ChangeNotifier {
     final index = favoriteCharacters.indexOf(character);
     if (index == -1) {
       favoriteCharacters.add(character);
-      UserPreferences.saveFavoriteCharactersToSharedPrefs('${character.id.toString()}');
-      UserPreferences.printCache();
+      UserPreferences.saveFavoriteCharactersToSharedPrefs(
+          '${character.id.toString()}');
     } else {
       favoriteCharacters.removeAt(index);
-      UserPreferences.removeFavoriteCharactersToSharedPrefs('${character.id.toString()}');
-      UserPreferences.printCache();
+      UserPreferences.removeFavoriteCharactersToSharedPrefs(
+          '${character.id.toString()}');
     }
     notifyListeners();
   }

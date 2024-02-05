@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -47,13 +49,17 @@ class CustomCard extends StatelessWidget {
                     onPressed: () {
                       provider.goToDetails(context, selectedList[index].id);
                     },
-                    child: Text('Details', style: Theme.of(context).textTheme.bodyMedium)),
+                    child: Text('Details',
+                        style: Theme.of(context).textTheme.bodyMedium)),
                 GestureDetector(
                   onTap: () {
                     provider.toggleFavorite(selectedList[index]);
                   },
-                  child: Icon(Icons.favorite,
-                      color: isFavorite ? Colors.red : Colors.white),
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_outline,
+                    color: Color(0xffA333C8),
+                    size: 30,
+                  ),
                 ),
               ],
             )

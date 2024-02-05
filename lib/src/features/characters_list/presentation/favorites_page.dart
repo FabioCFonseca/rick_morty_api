@@ -31,9 +31,9 @@ class FavoritesPage extends StatelessWidget {
                 bool isFavorite = provider.favoriteCharacters
                     .contains(provider.favoriteCharacters[index]);
                 return CustomCard(
-                   isFavorite: isFavorite,
-                   selectedList: provider.favoriteCharacters,
-                   index: index,                    
+                  isFavorite: isFavorite,
+                  selectedList: provider.favoriteCharacters,
+                  index: index,
                 );
               }),
         )

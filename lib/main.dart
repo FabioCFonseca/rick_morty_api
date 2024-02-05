@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'src/common/presentation/home_page.dart';
@@ -8,27 +9,27 @@ Future<void> main() async {
 
   await UserPreferences.init();
 
-  UserPreferences.printCache();
-
   runApp(
     const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const MyApp({Key? key});
 
   final Color primaryColor = const Color(0xff00A9D4);
   final Color backgroundColor = const Color(0xff2B2D32);
   final Color cardColor = const Color(0xffF2F2F2);
   final Color borderColor = const Color(0xffA333C8);
+  final Color bottomNavColor = const Color(0xff006782);
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.fromSeed(seedColor: primaryColor);
 
     final themeData = ThemeData(
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
           displayLarge: TextStyle(
             fontFamily: 'Blippo',
             fontSize: 32.0,
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: primaryColor,
+        backgroundColor: bottomNavColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
       ),

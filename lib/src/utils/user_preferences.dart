@@ -24,11 +24,4 @@ class UserPreferences {
       return false;
     }
   }
-
-  static void printCache() {
-    for (final key in preferences.getKeys()) {
-      final value = preferences.get(key);
-      print('Key: $key - ${key.runtimeType}, Value: $value - ${value.runtimeType}');
-    }
-  }
 }
