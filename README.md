@@ -1,5 +1,5 @@
 # Rick & Morty Catalog
-Aplicação para consumo de API externa e exibição dos personagens da série Rick & Morty
+Application for consuming an external API and displaying characters from the Rick & Morty series.
 
 ## Getting Started
 1. Install Flutter and Dart.
@@ -13,8 +13,9 @@ Aplicação para consumo de API externa e exibição dos personagens da série R
 
 ## Project Structure
 
-The project uses Domain Driven Design principles to achieve a modularizted code with loose coupling to allow the change of the adapter layer to others state managements solutions
+The project uses Domain Driven Design principles to achieve modularized code with loose coupling, allowing the change of the adapter layer to other state management solutions.
 
+```
 rick_morty_api/
 |-- lib/
 |   |-- src/
@@ -49,6 +50,7 @@ rick_morty_api/
 |   |   |-- utils/
 |   |   |   |-- user_preferences.dart
 |-- main.dart
+```
 
 ## Libraries
 
