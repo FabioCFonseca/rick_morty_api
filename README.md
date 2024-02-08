@@ -9,7 +9,7 @@ Application for consuming an external API and displaying characters from the Ric
 
 ## Demo
 
-![WhatsApp-Video-2024-02-05-at-16 06 47](https://github.com/FabioCFonseca/rick_morty_api/assets/108895922/7603d743-3475-49f8-8bb8-9c51d05f000a)
+![WhatsApp-Video-2024-02-05-at-16 06 47_edited](https://github.com/FabioCFonseca/rick_morty_api/assets/108895922/a486b836-ea48-4ebb-aab4-961ee8b534ff)
 
 ## Project Structure
 
