@@ -9,6 +9,8 @@ class CharactersSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Consumer<CharacterListProvider>(
       builder: (context, provider, child) {
         return Column(
@@ -21,18 +23,37 @@ class CharactersSuccess extends StatelessWidget {
               style: Theme.of(context).textTheme.displayLarge,
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: provider.characters.length,
-                itemBuilder: (context, index) {
-                  bool isFavorite = provider.favoriteCharacters
-                      .contains(provider.characters[index]);
-                  return CustomCard(
-                    isFavorite: isFavorite,
-                    selectedList: provider.characters, // Pass characters directly
-                    index: index,
-                  );
-                },
-              ),
+              child: screenWidth > 720
+                  ? GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 350,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                      ),
+                      itemCount: provider.characters.length,
+                      itemBuilder: (context, index) {
+                        bool isFavorite = provider.favoriteCharacters
+                            .contains(provider.characters[index]);
+                        return CustomCard(
+                          isFavorite: isFavorite,
+                          selectedList: provider.characters,
+                          index: index,
+                        );
+                      },
+                    )
+                  : ListView.builder(
+                      itemCount: provider.characters.length,
+                      itemBuilder: (context, index) {
+                        bool isFavorite = provider.favoriteCharacters
+                            .contains(provider.characters[index]);
+                        return CustomCard(
+                          isFavorite: isFavorite,
+                          selectedList: provider.characters,
+                          index: index,
+                        );
+                      },
+                    ),
             ),
           ],
         );
