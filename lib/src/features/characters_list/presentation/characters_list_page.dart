@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/presentation/error_indicator.dart';
 import '../../../common/presentation/loading.dart';
 import '../provider/character_list_provider.dart';
 import 'ui/characters_success.dart';
@@ -18,9 +17,7 @@ class CharactersListPage extends StatelessWidget {
               ? const LoadingInidicator()
               : provider.providerStatus == CharacterListProviderState.success
                   ? const CharactersSuccess()
-                  : ErrorIndicator(
-                      error: provider.appError,
-                    ),
+                  : Center(child: Text(provider.appError.errorMessage)),
         );
       },
     );

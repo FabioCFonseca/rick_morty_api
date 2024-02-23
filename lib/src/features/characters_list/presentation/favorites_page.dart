@@ -9,6 +9,8 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Consumer<CharacterListProvider>(
       builder: (context, provider, child) {
         return Column(
@@ -28,18 +30,38 @@ class FavoritesPage extends StatelessWidget {
               height: 30,
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: provider.favoriteCharacters.length,
-                itemBuilder: (context, index) {
-                  bool isFavorite = provider.favoriteCharacters
-                      .contains(provider.favoriteCharacters[index]);
-                  return CustomCard(
-                    isFavorite: isFavorite,
-                    selectedList: provider.favoriteCharacters,
-                    index: index,
-                  );
-                },
-              ),
+              child: screenWidth > 720
+                  ? GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 350,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                      ),
+                      itemCount: provider.favoriteCharacters.length,
+                      itemBuilder: (context, index) {
+                        bool isFavorite = provider.favoriteCharacters
+                            .contains(provider.favoriteCharacters[index]);
+                        return CustomCard(
+                          isFavorite: isFavorite,
+                          selectedList: provider.favoriteCharacters,
+                          index: index,
+                        );
+                      },
+                    )
+                  : ListView.builder(
+                      itemCount: provider.favoriteCharacters.length,
+                      itemBuilder: (context, index) {
+                        bool isFavorite = provider.favoriteCharacters
+                            .contains(provider.favoriteCharacters[index]);
+                        return CustomCard(
+                          isFavorite: isFavorite,
+                          selectedList: provider.favoriteCharacters,
+                          index: index,
+                        );
+                      },
+                    ),
             ),
           ],
         );

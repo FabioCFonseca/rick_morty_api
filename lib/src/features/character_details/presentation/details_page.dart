@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:rick_morty_flutter/src/features/character_details/presentation/ui/character_details_success.dart';
-import '../../../common/presentation/error_indicator.dart';
 import '../infrastructure/character_details_repository.dart';
 import '../provider/character_details_provider.dart';
 import '../../../common/presentation/loading.dart';
@@ -32,7 +31,9 @@ class DetailsPage extends StatelessWidget {
                 CharacterDetailsProviderState.success) {
               return CharacterDetailsSuccess();
             } else {
-              return ErrorIndicator(error: characterDetailsProvider.appError);
+              return Center(
+                child: Text(characterDetailsProvider.appError.errorMessage),
+              );
             }
           },
         ),

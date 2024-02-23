@@ -17,16 +17,7 @@ class CharactersDetailsRepository {
         final parsedData = json.decode(response.body);
         final characterData = parsedData;
 
-        return Right(CharacterDetailModel(
-          id: characterData['id'],
-          name: characterData['name'],
-          gender: characterData['gender'],
-          image: characterData['image'],
-          origin: characterData['origin']['name'],
-          species: characterData['species'],
-          status: characterData['status'],
-          type: characterData['type'],
-        ));
+        return Right(CharacterDetailModel.fromMap(characterData));
       } else {
         return Left(AppError(statusCode: response.statusCode));
       }

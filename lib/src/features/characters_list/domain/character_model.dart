@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 // ignore_for_file: hash_and_equals
 
 // Todos os domínios são iguais nas diferentes soluções de state management
@@ -30,4 +33,24 @@ class CharacterModel {
     if (other is! CharacterModel) return false;
     return name == other.name && image == other.image;
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'image': image,
+    };
+  }
+
+  factory CharacterModel.fromMap(Map<String, dynamic> map) {
+    return CharacterModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      image: map['image'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory CharacterModel.fromJson(String source) => CharacterModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
