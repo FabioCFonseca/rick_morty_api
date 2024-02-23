@@ -11,15 +11,18 @@ class CharactersListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CharacterListProvider>(context);
-    return Scaffold(
-      body: provider.providerStatus == CharacterListProviderState.loading
-          ? const LoadingInidicator()
-          : provider.providerStatus == CharacterListProviderState.success
-              ? const CharactersSuccess()
-              : ErrorIndicator(
-                  error: provider.appError,
-                ),
+    return Consumer<CharacterListProvider>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          body: provider.providerStatus == CharacterListProviderState.loading
+              ? const LoadingInidicator()
+              : provider.providerStatus == CharacterListProviderState.success
+                  ? const CharactersSuccess()
+                  : ErrorIndicator(
+                      error: provider.appError,
+                    ),
+        );
+      },
     );
   }
 }

@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 import 'src/common/presentation/home_page.dart';
 import 'src/utils/user_preferences.dart';
@@ -9,15 +11,25 @@ Future<void> main() async {
 
   await UserPreferences.init();
 
-  runApp(
-    const MyApp(),
-  );
+  runApp(MultiProvider(
+    providers: [
+      // Character List Feature
+      Provider(create: (context) => CharactersListRepository()),
+      ChangeNotifierProvider(
+        create: (context) => CharacterListProvider(
+            repository: context.read<CharactersListRepository>())
+          ..controllerStart(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const MyApp({Key? key});
 
+  // Variáveis de esquema de cores para o app
   final Color primaryColor = const Color(0xff00A9D4);
   final Color backgroundColor = const Color(0xff2B2D32);
   final Color cardColor = const Color(0xffF2F2F2);

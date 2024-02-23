@@ -9,35 +9,41 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CharacterListProvider>(context);
-
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        const Text(
-          'List of Characters',
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w500, color: Colors.white),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Expanded(
-          child: ListView.builder(
-              itemCount: provider.favoriteCharacters.length,
-              itemBuilder: (context, index) {
-                bool isFavorite = provider.favoriteCharacters
-                    .contains(provider.favoriteCharacters[index]);
-                return CustomCard(
-                  isFavorite: isFavorite,
-                  selectedList: provider.favoriteCharacters,
-                  index: index,
-                );
-              }),
-        )
-      ],
+    return Consumer<CharacterListProvider>(
+      builder: (context, provider, child) {
+        return Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              'List of Characters',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: provider.favoriteCharacters.length,
+                itemBuilder: (context, index) {
+                  bool isFavorite = provider.favoriteCharacters
+                      .contains(provider.favoriteCharacters[index]);
+                  return CustomCard(
+                    isFavorite: isFavorite,
+                    selectedList: provider.favoriteCharacters,
+                    index: index,
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

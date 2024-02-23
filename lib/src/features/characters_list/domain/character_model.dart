@@ -1,11 +1,19 @@
 // ignore_for_file: hash_and_equals
 
+// Todos os domínios são iguais nas diferentes soluções de state management
+// tanto a interface do repositório quanto o model
+
+// Model criada diretamente no Domain pois os dados serão usados somente para 
+// display na UI e não possuem regras de negócio *****
+
+// COLORCAR MODEL NA FOLDER REPOSITORIE? ** DOMAIN/REPOSITORI/I_REPO & MODEL
+
 class CharacterModel {
   final int id;
   final String name;
   final String image;
 
-  CharacterModel({
+  const CharacterModel({
     required this.id,
     required this.name,
     required this.image,
@@ -14,6 +22,8 @@ class CharacterModel {
   @override
   String toString() => 'Character name: $name';
 
+  // Método para verificar a equalidade dos objetos para a funcionalidade
+  // de toggle nos favoritos
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
