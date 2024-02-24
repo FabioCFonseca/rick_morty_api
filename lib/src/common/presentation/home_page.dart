@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../features/characters_list/provider/character_list_provider.dart';
-import '../../features/characters_list/presentation/characters_list_page.dart';
-import '../../features/characters_list/presentation/favorites_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/presentation/characters_list_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/presentation/favorites_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite), label: 'Favorites'),
+                  icon: Icon(Icons.favorite), label: 'Favorites',),
             ],
             onTap: provider.setPage,
           );

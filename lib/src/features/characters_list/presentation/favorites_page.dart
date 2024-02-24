@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../provider/character_list_provider.dart';
-import 'ui/custom_card.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -18,7 +17,7 @@ class FavoritesPage extends StatelessWidget {
                 child: Text(
                 'No favorite characters added',
                 style: Theme.of(context).textTheme.displayLarge,
-              ))
+              ),)
             : Column(
                 children: [
                   const SizedBox(
@@ -47,7 +46,7 @@ class FavoritesPage extends StatelessWidget {
                             ),
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
-                              bool isFavorite = provider.favoriteCharacters
+                              final bool isFavorite = provider.favoriteCharacters
                                   .contains(provider.favoriteCharacters[index]);
                               return CustomCard(
                                 isFavorite: isFavorite,
@@ -59,7 +58,7 @@ class FavoritesPage extends StatelessWidget {
                         : ListView.builder(
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
-                              bool isFavorite = provider.favoriteCharacters
+                              final bool isFavorite = provider.favoriteCharacters
                                   .contains(provider.favoriteCharacters[index]);
                               return CustomCard(
                                 isFavorite: isFavorite,

@@ -1,12 +1,12 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, noop_primitive_operations
 
 import 'package:flutter/material.dart';
 
-import '../../../utils/user_preferences.dart';
-import '../../characters_list/domain/character_model.dart';
-import '../../characters_list/infrastructure/characters_list_repository.dart';
-import '../../../common/domain/app_error.dart';
-import '../../character_details/presentation/details_page.dart';
+import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
+import 'package:rick_morty_flutter/src/features/character_details/presentation/details_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
+import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
 
 enum CharacterListProviderState { loading, success, error }
 
@@ -52,11 +52,11 @@ class CharacterListProvider extends ChangeNotifier {
     if (index == -1) {
       favoriteCharacters.add(character);
       UserPreferences.saveFavoriteCharactersToSharedPrefs(
-          '${character.id.toString()}');
+          '${character.id.toString()}',);
     } else {
       favoriteCharacters.removeAt(index);
       UserPreferences.removeFavoriteCharactersToSharedPrefs(
-          '${character.id.toString()}');
+          '${character.id.toString()}',);
     }
     notifyListeners();
   }
@@ -67,9 +67,9 @@ class CharacterListProvider extends ChangeNotifier {
   }
 
   //DETAILS PAGE NAVIGATION
-  void goToDetails(context, id) {
+  void goToDetails(BuildContext context, int id) {
     Navigator.push(
-      context,
+       context,
       MaterialPageRoute(
         builder: (context) => DetailsPage(selectedCharacter: id),
       ),
@@ -77,7 +77,7 @@ class CharacterListProvider extends ChangeNotifier {
   }
 
   //BOTTOM NAVBAR NAVIGATION
-  final PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController();
   int currentPage = 0;
 
   void setPage(int page) {

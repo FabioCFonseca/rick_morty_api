@@ -46,6 +46,7 @@ class CharacterDetailModel {
       species: map['species'] as String,
       type: map['type'] as String,
       gender: map['gender'] as String,
+      // ignore: avoid_dynamic_calls
       origin: map['origin']['name'] as String,
       image: map['image'] as String,
     );

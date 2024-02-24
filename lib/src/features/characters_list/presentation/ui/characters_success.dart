@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../provider/character_list_provider.dart';
-import 'custom_card.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class CharactersSuccess extends StatelessWidget {
   const CharactersSuccess({super.key});
@@ -33,7 +32,7 @@ class CharactersSuccess extends StatelessWidget {
                       ),
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
-                        bool isFavorite = provider.favoriteCharacters
+                        final bool isFavorite = provider.favoriteCharacters
                             .contains(provider.characters[index]);
                         return CustomCard(
                           isFavorite: isFavorite,
@@ -45,7 +44,7 @@ class CharactersSuccess extends StatelessWidget {
                   : ListView.builder(
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
-                        bool isFavorite = provider.favoriteCharacters
+                        final bool isFavorite = provider.favoriteCharacters
                             .contains(provider.characters[index]);
                         return CustomCard(
                           isFavorite: isFavorite,

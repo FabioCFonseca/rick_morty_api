@@ -1,10 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../characters_list/domain/character_model.dart';
-import '../../../common/domain/app_error.dart';
-import '../domain/i_character_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 
 // Chamada API implementa a interface do repositório no domínio
 // se comunicando com a mesma somente através de interface e
@@ -24,13 +25,15 @@ class CharactersListRepository implements ICharacterRepository {
       final characters = <CharacterModel>[];
       for (int currentPage = 1; currentPage <= 42; currentPage++) {
         final url = Uri.https('rickandmortyapi.com', '/api/character',
-            {'page': currentPage.toString()});
+            {'page': currentPage.toString()},);
         final response = await http.get(url);
 
         if (response.statusCode == 200) {
           final parsedData = json.decode(response.body);
+          // ignore: avoid_dynamic_calls
           final characterData = parsedData['results'] as List;
           characters.addAll(
+              // ignore: argument_type_not_assignable
             characterData.map((element) => CharacterModel.fromMap(element)),
           );
         } else {

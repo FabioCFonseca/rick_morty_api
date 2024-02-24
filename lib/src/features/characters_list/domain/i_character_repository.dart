@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import 'character_model.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
 
 // Interface para abstrair a implementação do repositório/API da camada de domínio
 abstract class ICharacterRepository {

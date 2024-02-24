@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../common/presentation/loading.dart';
-import '../provider/character_list_provider.dart';
-import 'ui/characters_success.dart';
+import 'package:rick_morty_flutter/src/common/presentation/loading.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/characters_success.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class CharactersListPage extends StatelessWidget {
   const CharactersListPage({super.key});

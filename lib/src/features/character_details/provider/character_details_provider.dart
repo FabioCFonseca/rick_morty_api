@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/domain/app_error.dart';
-import '../domain/character_details_model.dart';
-import '../infrastructure/character_details_repository.dart';
+import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
+import 'package:rick_morty_flutter/src/features/character_details/domain/character_details_model.dart';
+import 'package:rick_morty_flutter/src/features/character_details/infrastructure/character_details_repository.dart';
 
 enum CharacterDetailsProviderState { loading, success, error }
 
 class CharacterDetailsProvider extends ChangeNotifier {
   CharacterDetailsProvider(
-      {required this.selectedCharacter, required this.repository});
+      {required this.selectedCharacter, required this.repository,});
 
   //REPOSITORY INSTANCE
   CharactersDetailsRepository repository;

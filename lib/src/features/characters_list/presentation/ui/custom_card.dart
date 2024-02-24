@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
 
-import '../../provider/character_list_provider.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -15,7 +16,7 @@ class CustomCard extends StatelessWidget {
   });
 
   final bool isFavorite;
-  final List selectedList;
+  final List<CharacterModel> selectedList;
   final int index;
 
   @override
