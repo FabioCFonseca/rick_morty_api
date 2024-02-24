@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +19,15 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: Padding(
           padding: const EdgeInsets.only(top: 12),
-          child: CachedNetworkImage(
-            imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            height: 70,
-          ),
+          // Check se app está no browser
+          child: kIsWeb 
+              ? Image.asset('assets/logo.png', height: 70,) 
+              : CachedNetworkImage(
+                  imageUrl:
+                      'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  height: 70,
+                ),
         ),
       ),
       body: Consumer<CharacterListProvider>(
