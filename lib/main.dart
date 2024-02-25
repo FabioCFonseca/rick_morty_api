@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
       Provider(create: (context) => CharactersListRepository()),
       ChangeNotifierProvider(
         create: (context) => CharacterListProvider(
-            repository: context.read<CharactersListRepository>(),)
+            repository: context.read<ICharacterRepository>(),)
           ..controllerStart(),
       ),
     ],
