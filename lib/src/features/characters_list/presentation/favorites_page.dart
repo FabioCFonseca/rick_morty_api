@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
@@ -15,9 +16,10 @@ class FavoritesPage extends StatelessWidget {
         return provider.favoriteCharacters.isEmpty
             ? Center(
                 child: Text(
-                'No favorite characters added',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),)
+                  'No favorite characters added',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+              )
             : Column(
                 children: [
                   const SizedBox(
@@ -46,25 +48,15 @@ class FavoritesPage extends StatelessWidget {
                             ),
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
-                              final bool isFavorite = provider.favoriteCharacters
-                                  .contains(provider.favoriteCharacters[index]);
                               return CustomCard(
-                                isFavorite: isFavorite,
-                                selectedList: provider.favoriteCharacters,
-                                index: index,
-                              );
+                                  character: provider.favoriteCharacters[index],);
                             },
                           )
                         : ListView.builder(
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
-                              final bool isFavorite = provider.favoriteCharacters
-                                  .contains(provider.favoriteCharacters[index]);
                               return CustomCard(
-                                isFavorite: isFavorite,
-                                selectedList: provider.favoriteCharacters,
-                                index: index,
-                              );
+                                  character: provider.favoriteCharacters[index],);
                             },
                           ),
                   ),

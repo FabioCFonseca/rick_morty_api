@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
@@ -24,7 +25,8 @@ class CharactersSuccess extends StatelessWidget {
             Expanded(
               child: screenWidth > 720
                   ? GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisExtent: 350,
                         crossAxisCount: 2,
                         crossAxisSpacing: 10.0,
@@ -32,25 +34,15 @@ class CharactersSuccess extends StatelessWidget {
                       ),
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
-                        final bool isFavorite = provider.favoriteCharacters
-                            .contains(provider.characters[index]);
                         return CustomCard(
-                          isFavorite: isFavorite,
-                          selectedList: provider.characters,
-                          index: index,
-                        );
+                            character: provider.characters[index],);
                       },
                     )
                   : ListView.builder(
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
-                        final bool isFavorite = provider.favoriteCharacters
-                            .contains(provider.characters[index]);
                         return CustomCard(
-                          isFavorite: isFavorite,
-                          selectedList: provider.characters,
-                          index: index,
-                        );
+                            character: provider.characters[index],);
                       },
                     ),
             ),
