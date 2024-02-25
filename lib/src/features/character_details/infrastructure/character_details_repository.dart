@@ -4,9 +4,11 @@ import 'package:http/http.dart' as http;
 
 import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
 import 'package:rick_morty_flutter/src/features/character_details/domain/character_details_model.dart';
+import 'package:rick_morty_flutter/src/features/character_details/domain/i_character_details_repository.dart';
 
-class CharactersDetailsRepository {
-  Future<Either<AppError, CharacterDetailModel>> getCharactersDetails(
+class CharactersDetailsRepository implements ICharacterDetailsRepository{
+  @override
+  Future<Either<AppError, CharacterDetailModel>> getDetails(
       int selectedCharacter,) async {
     try {
       final url =

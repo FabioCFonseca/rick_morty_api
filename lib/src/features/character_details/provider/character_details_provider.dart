@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
 import 'package:rick_morty_flutter/src/features/character_details/domain/character_details_model.dart';
-import 'package:rick_morty_flutter/src/features/character_details/infrastructure/character_details_repository.dart';
+import 'package:rick_morty_flutter/src/features/character_details/domain/i_character_details_repository.dart';
 
 enum CharacterDetailsProviderState { loading, success, error }
 
@@ -11,7 +11,7 @@ class CharacterDetailsProvider extends ChangeNotifier {
       {required this.selectedCharacter, required this.repository,});
 
   //REPOSITORY INSTANCE
-  CharactersDetailsRepository repository;
+  ICharacterDetailsRepository repository;
   int selectedCharacter;
 
   // MODELS FOR UI
@@ -23,7 +23,7 @@ class CharacterDetailsProvider extends ChangeNotifier {
 
   Future controllerStart() async {
     providerStatus = CharacterDetailsProviderState.loading;
-    final result = await repository.getCharactersDetails(selectedCharacter);
+    final result = await repository.getDetails(selectedCharacter);
 
     result.fold(
       (error) {

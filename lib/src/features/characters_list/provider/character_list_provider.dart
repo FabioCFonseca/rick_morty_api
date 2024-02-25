@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
 import 'package:rick_morty_flutter/src/features/character_details/presentation/details_page.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
 
 enum CharacterListProviderState { loading, success, error }
@@ -14,7 +14,7 @@ class CharacterListProvider extends ChangeNotifier {
   CharacterListProvider({required this.repository});
 
   //REPOSITORY INSTANCE
-  final CharactersListRepository repository;
+  final ICharacterRepository repository;
 
   // MODELS FOR UI
   List<CharacterModel> characters = [];
