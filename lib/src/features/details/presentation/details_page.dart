@@ -8,23 +8,23 @@ import '../infrastructure/details_repository.dart';
 import 'ui/details_success.dart';
 
 class DetailsPage extends StatelessWidget {
-  DetailsPage({super.key, required this.selectedCharacter});
+  const DetailsPage({super.key, required this.selectedCharacter});
 
-  int selectedCharacter;
+  final int selectedCharacter;
 
   @override
   Widget build(BuildContext context) {
     final DetailsController controller = Get.put<DetailsController>(
-      DetailsController(DetailsRepository(), selectedCharacter),
+      DetailsController(CharactersDetailsRepository(), selectedCharacter),
     );
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(builder: (BuildContext) {
+        leading: Builder(builder: (BuildContext context) {
           return IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(FontAwesome.arrow_left),);       
+            icon: const Icon(FontAwesome.arrow_left),);       
         }),
         toolbarHeight: 62,
         forceMaterialTransparency: true,
@@ -33,17 +33,17 @@ class DetailsPage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12),
           child: CachedNetworkImage(
             imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-            errorWidget: (context, url, error) => Icon(FontAwesome.exclamation_circle),
+            errorWidget: (context, url, error) => const Icon(FontAwesome.exclamation_circle),
             height: 50,
           ),
         ),
       ),
       body: Obx(() {
         if (controller.status.value.isLoading) {
-          return Center(child: const CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (controller.status.value.isError) {
           return Center(
-            child: Text(controller.apiError),
+            child: Text(controller.apiError.errorMessage),
           );
         } else {
           return CharacterDetailsSuccess(character: controller.details.value!);

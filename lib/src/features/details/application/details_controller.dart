@@ -1,20 +1,21 @@
 import 'package:get/get.dart';
+import 'package:rick_morty_getx/src/common/domain/app_error.dart';
 
-import '../domain/details.dart';
-import '../domain/i_details_repository.dart';
+import '../domain/character_details_model.dart';
+import '../domain/i_character_details_repository.dart';
 
 class DetailsController extends GetxController {
   DetailsController(this._repository, this._index);
 
-  IDetailsRepository _repository;
-  int _index;
+  final ICharacterDetailsRepository _repository;
+  final int _index;
 
-  final Rxn<DetailsModel> details = Rxn<DetailsModel>();
+  final Rxn<CharacterDetailModel> details = Rxn<CharacterDetailModel>();
 
   final Rx<RxStatus> status = Rx(RxStatus.empty());
 
-  late final String _apiError;
-  String get apiError => _apiError;
+  late final AppError _apiError;
+  AppError get apiError => _apiError;
 
   @override
   void onInit() {
@@ -28,7 +29,7 @@ class DetailsController extends GetxController {
     final result = await _repository.getDetails(_index);
 
     result.fold((error) {
-      _apiError = error.message!;
+      _apiError = error;
       status.value = RxStatus.error();
     }, (success) {
       details.value = success;

@@ -1,34 +1,50 @@
 import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty_getx/src/common/domain/app_error.dart';
+import 'package:rick_morty_getx/src/features/catalog/domain/catalog_model.dart';
+import 'package:rick_morty_getx/src/features/catalog/domain/i_catalog_repository.dart';
 
-import '../../../common/domain/app_failure.dart';
-import '../../../common/infrastructure/error_handler.dart';
-import '../domain/catalog.dart';
+// Chamada API implementa a interface do repositório no domínio
+// se comunicando com a mesma somente através de interface e
+// se desacoplando das camadas restantes
+class CatalogRepository implements ICatalogRepository {
+  // Chamada API com utilização de paradigma funcional com o
+  // pacote Dartz para o error handling
+  // A assinatura de uma função Either explicita que a mesma pode retornar um erro
+  // enforçando o tratamento deste erro
+  // Sem deixar explicito a possibilidade de um erro temos que 'lembrar' de tratar o
+  // erro no código
+  // Não é possível ignorar o tratamento do erro ou o código não irá compilar
 
-class CatalogRepository {
-  Future<Either<AppFailure, List<CatalogModel>>> getCatalog() async {
+  @override
+  Future<Either<AppError, List<CatalogModel>>> getCatalog() async {
     try {
       final characters = <CatalogModel>[];
       for (int currentPage = 1; currentPage <= 42; currentPage++) {
-        final url = Uri.https('rickandmortyapi.com', '/api/character',
-            {'page': currentPage.toString()});
+        final url = Uri.https(
+          'rickandmortyapi.com',
+          '/api/character',
+          {'page': currentPage.toString()},
+        );
         final response = await http.get(url);
 
         if (response.statusCode == 200) {
           final parsedData = json.decode(response.body);
-          final catalogData = parsedData['results'] as List;
+          final characterData = parsedData['results'] as List;
           characters.addAll(
-            catalogData.map((element) => CatalogModel.fromMap(element)),
+            characterData.map((element) => CatalogModel.fromMap(element)),
           );
         } else {
-          return Left(ErrorHandler.mapError(response));
+          return Left(AppError(statusCode: response.statusCode));
         }
       }
 
       return Right(characters);
-    } on Exception catch (error) {
-      return left(ErrorHandler.mapError(error));
+    } catch (error) {
+      throw Exception(error);
     }
   }
 }
+

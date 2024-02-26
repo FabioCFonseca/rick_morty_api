@@ -1,75 +1,73 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
-import 'package:get/get.dart';
+// ignore_for_file: prefer_const_constructors
 
-import '../../../details/presentation/details_page.dart';
-import '../../domain/catalog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rick_morty_getx/src/features/catalog/application/catalog_controller.dart';
+import 'package:rick_morty_getx/src/features/catalog/domain/catalog_model.dart';
+import 'package:rick_morty_getx/src/features/details/presentation/details_page.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({
-    super.key,
-    required this.selectedList,
-    required this.favorites,
-    required this.toggleFunction,
-  });
+  const CustomCard({Key? key, required this.character}) : super(key: key);
 
-  final List selectedList;
-  final List favorites;
-  final void Function({CatalogModel? character}) toggleFunction;
+  final CatalogModel character;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => ListView.builder(
-        itemCount: selectedList.length,
-        itemBuilder: (context, index) {
-          return Card(
-            margin: const EdgeInsets.all(35),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
+    final CatalogController controller = Get.find<CatalogController>();
+
+    return Obx(() {
+      return Card(
+        margin: const EdgeInsets.all(35),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(80),
+                child: CachedNetworkImage(
+                  imageUrl: character.image,
+                  width: 150,
+                  height: 150,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                character.name,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(80),
-                      child: Image.network(
-                        selectedList[index].image,
-                        width: 150,
-                        height: 150,
-                      ),
+                  ElevatedButton(
+                    onPressed: () =>
+                        Get.to(DetailsPage(
+                          selectedCharacter: character.id,
+                        )),
+                    child: Text(
+                      'Details',
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(selectedList[index].name,
-                      style: Theme.of(context).textTheme.labelLarge),
-                  const SizedBox(
-                    height: 30,
+                  GestureDetector(
+                    onTap: () => controller.toggleFavorite(character),
+                    child: Icon(
+                      controller.favorites.contains(character)
+                          ? Icons.favorite
+                          : Icons.favorite_outline,
+                      color: const Color(0xffA333C8),
+                      size: 30,
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => Get.to(DetailsPage(
-                          selectedCharacter: selectedList[index].id,
-                        )),
-                        child: const Text('Details'),
-                      ),
-                      GestureDetector(
-                        onTap: () =>
-                            toggleFunction(character: selectedList[index]),
-                        child: Obx(() => Icon(
-                              favorites.contains(selectedList[index])
-                                  ? FontAwesome.heart
-                                  : FontAwesome.heart_o,
-                              color: Color(0xffA333C8),
-                              size: 30,
-                            )),
-                      ),
-                    ],
-                  )
                 ],
               ),
-            ),
-          );
-        }));
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

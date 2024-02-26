@@ -1,27 +1,32 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+// ignore_for_file: hash_and_equals
+
+// Todos os domínios são iguais nas diferentes soluções de state management
+// tanto a interface do repositório quanto o model permitindo o re uso do código
+// devido ao desacoplamento
 
 class CatalogModel {
   final int id;
   final String name;
   final String image;
 
-  CatalogModel({
+  const CatalogModel({
     required this.id,
     required this.name,
     required this.image,
   });
 
-  CatalogModel copyWith({
-    int? id,
-    String? name,
-    String? image,
-  }) {
-    return CatalogModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      image: image ?? this.image,
-    );
+  @override
+  String toString() => 'Character name: $name';
+
+  // Método para verificar a equalidade dos objetos para a funcionalidade
+  // de toggle nos favoritos
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CatalogModel) return false;
+    return name == other.name && image == other.image;
   }
 
   Map<String, dynamic> toMap() {
@@ -44,19 +49,4 @@ class CatalogModel {
 
   factory CatalogModel.fromJson(String source) =>
       CatalogModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() => 'CatalogModel(id: $id, name: $name, image: $image)';
-
-  @override
-  bool operator ==(covariant CatalogModel other) {
-    if (identical(this, other)) {
-      return true;
-    }
-
-    return other.id == id && other.name == name && other.image == image;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ image.hashCode;
 }

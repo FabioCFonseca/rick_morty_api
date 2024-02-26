@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty_getx/src/common/domain/app_error.dart';
+import 'package:rick_morty_getx/src/features/details/domain/character_details_model.dart';
+import 'package:rick_morty_getx/src/features/details/domain/i_character_details_repository.dart';
 
-import '../../../common/domain/app_failure.dart';
-import '../../../common/infrastructure/error_handler.dart';
-import '../domain/details.dart';
-import '../domain/i_details_repository.dart';
 
-class DetailsRepository implements IDetailsRepository {
+class CharactersDetailsRepository implements ICharacterDetailsRepository {
   @override
-  Future<Either<AppFailure, DetailsModel>> getDetails(
-      int selectedCharacter) async {
+  Future<Either<AppError, CharacterDetailModel>> getDetails(
+    int selectedCharacter,
+  ) async {
     try {
       final url =
           Uri.https('rickandmortyapi.com', '/api/character/$selectedCharacter');
@@ -18,13 +18,15 @@ class DetailsRepository implements IDetailsRepository {
 
       if (response.statusCode == 200) {
         final parsedData = json.decode(response.body);
+        final characterData = parsedData;
 
-        return Right(DetailsModel.fromMap(parsedData));
+        // ignore: argument_type_not_assignable
+        return Right(CharacterDetailModel.fromMap(characterData));
       } else {
-        return Left(ErrorHandler.mapError(response));
+        return Left(AppError(statusCode: response.statusCode));
       }
-    } on Exception catch (error) {
-      return left(ErrorHandler.mapError(error));
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 }

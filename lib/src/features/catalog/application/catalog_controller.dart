@@ -1,14 +1,17 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:rick_morty_getx/src/common/domain/app_error.dart';
+import 'package:rick_morty_getx/src/features/catalog/domain/i_catalog_repository.dart';
 import '../../../utils/user_preferences.dart';
-import '../domain/catalog.dart';
-import '../infrastructure/catalog_repository.dart';
+import '../domain/catalog_model.dart';
 
 class CatalogController extends GetxController {
   CatalogController(this._repository);
 
-  final CatalogRepository _repository;
+  final ICatalogRepository _repository;
 
   final RxList<CatalogModel> _catalog = RxList<CatalogModel>();
   List<CatalogModel> get catalog => _catalog;
@@ -16,8 +19,8 @@ class CatalogController extends GetxController {
   final RxList<CatalogModel> _favorites = RxList<CatalogModel>();
   List<CatalogModel> get favorites => _favorites;
 
-  late final String _apiError;
-  String get apiError => _apiError;
+  late final AppError _apiError;
+  AppError get apiError => _apiError;
 
   final Rx<RxStatus> status = Rx(RxStatus.empty());
 
@@ -34,7 +37,7 @@ class CatalogController extends GetxController {
 
     result.fold(
       (error) {
-        _apiError = error.message!;
+        _apiError = error;
         status.value = RxStatus.error();
       },
       (success) {
@@ -44,25 +47,24 @@ class CatalogController extends GetxController {
             favorites.add(character);
           }
         }
-        print(favorites);
         status.value = RxStatus.success();
       },
     );
   }
 
   //TOGGLE FUNCTIONALITY
-  void toggleFavorite({CatalogModel? character}) {
+  void toggleFavorite(CatalogModel character) {
     final index = _favorites.indexOf(character);
     if (index == -1) {
-      _favorites.add(character!);
+      _favorites.add(character);
       UserPreferences.saveFavoriteCharactersToSharedPrefs(
-          '${character!.id.toString()}');
-      print(favorites);
+        '${character.id.toString()}',
+      );
     } else {
       _favorites.removeAt(index);
       UserPreferences.removeFavoriteCharactersToSharedPrefs(
-          '${character!.id.toString()}');
-      print(favorites);
+        '${character.id.toString()}',
+      );
     }
   }
 

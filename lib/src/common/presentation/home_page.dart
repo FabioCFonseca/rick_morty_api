@@ -4,7 +4,6 @@ import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:get/get.dart';
 
 import '../../features/catalog/application/catalog_controller.dart';
-import '../../features/catalog/infrastructure/catalog_repository.dart';
 import '../../features/catalog/presentation/catalog_page.dart';
 import '../../features/catalog/presentation/favorites_page.dart';
 
@@ -13,9 +12,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CatalogController controller = Get.put<CatalogController>(
-      CatalogController(CatalogRepository()),
-    );
+    final CatalogController controller = Get.find<CatalogController>();
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -25,7 +23,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12),
           child: CachedNetworkImage(
             imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-            errorWidget: (context, url, error) => Icon(FontAwesome.exclamation_circle),
+            errorWidget: (context, url, error) => const Icon(FontAwesome.exclamation_circle),
             height: 70,
           ),
         ),

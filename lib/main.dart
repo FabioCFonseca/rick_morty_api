@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rick_morty_getx/src/features/catalog/application/catalog_controller.dart';
+import 'package:rick_morty_getx/src/features/catalog/infrastructure/catalog_repository.dart';
 
 import 'src/common/presentation/home_page.dart';
 import 'src/utils/user_preferences.dart';
@@ -9,6 +11,10 @@ Future<void> main() async {
 
   // Initialize user preferences
   await UserPreferences.init();
+
+  // DI para catalog feature
+  Get.put<CatalogRepository>(CatalogRepository());
+  Get.put<CatalogController>(CatalogController(Get.find<CatalogRepository>()));
 
   runApp(const MyApp());
 }
