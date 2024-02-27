@@ -1,65 +1,56 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
+import 'package:rick_morty_flutter/src/common/presentation/custom_app_bar.dart';
+import 'package:rick_morty_flutter/src/common/presentation/custom_bottom_nav_bar.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/characters_list_page.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/favorites_page.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final PageController _pageController;
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        forceMaterialTransparency: true,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 12),
-          // Check se app está no browser
-          child: kIsWeb
-              ? Image.asset(
-                  'assets/logo.png',
-                  height: 70,
-                )
-              : CachedNetworkImage(
-                  imageUrl:
-                      'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  height: 70,
-                ),
-        ),
+      appBar: const CustomAppBar(),
+      body: PageView(
+        controller: _pageController,
+        children: const [
+          CharactersListPage(),
+          FavoritesPage(),
+        ],
       ),
-      body: Consumer<CharacterListProvider>(
-        builder: (context, provider, child) {
-          return PageView(
-            controller: provider.pageController,
-            children: const [
-              CharactersListPage(),
-              FavoritesPage(),
-            ],
-          );
-        },
-      ),
-      bottomNavigationBar: Consumer<CharacterListProvider>(
-        builder: (context, provider, child) {
-          return BottomNavigationBar(
-            elevation: 50,
-            iconSize: 26,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: provider.currentPage,
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Favorites',
-              ),
-            ],
-            onTap: provider.setPage,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentPage: currentPage,
+        //Callback do filho para o pai
+        onTap: (index) {
+          setState(() {
+            currentPage = index;
+          });
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.ease,
           );
         },
       ),

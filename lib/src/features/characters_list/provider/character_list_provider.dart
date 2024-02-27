@@ -77,18 +77,4 @@ class CharacterListProvider extends ChangeNotifier {
       ),
     );
   }
-
-  //BOTTOM NAVBAR NAVIGATION
-  final PageController pageController = PageController();
-  int currentPage = 0;
-
-  void setPage(int page) {
-    pageController.animateToPage(
-      page,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.ease,
-    );
-    currentPage = page;
-    notifyListeners();
-  }
 }
