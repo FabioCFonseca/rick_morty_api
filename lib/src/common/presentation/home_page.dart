@@ -20,8 +20,11 @@ class HomePage extends StatelessWidget {
         title: Padding(
           padding: const EdgeInsets.only(top: 12),
           // Check se app está no browser
-          child: kIsWeb 
-              ? Image.asset('assets/logo.png', height: 70,) 
+          child: kIsWeb
+              ? Image.asset(
+                  'assets/logo.png',
+                  height: 70,
+                )
               : CachedNetworkImage(
                   imageUrl:
                       'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
@@ -52,7 +55,9 @@ class HomePage extends StatelessWidget {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite), label: 'Favorites',),
+                icon: Icon(Icons.favorite),
+                label: 'Favorites',
+              ),
             ],
             onTap: provider.setPage,
           );

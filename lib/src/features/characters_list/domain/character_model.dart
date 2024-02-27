@@ -4,12 +4,8 @@ import 'dart:convert';
 // ignore_for_file: hash_and_equals
 
 // Todos os domínios são iguais nas diferentes soluções de state management
-// tanto a interface do repositório quanto o model
-
-// Model criada diretamente no Domain pois os dados serão usados somente para 
-// display na UI e não possuem regras de negócio *****
-
-// COLORCAR MODEL NA FOLDER REPOSITORIE? ** DOMAIN/REPOSITORI/I_REPO & MODEL
+// tanto a interface do repositório quanto o model permitindo o re uso do código
+// devido ao desacoplamento
 
 class CharacterModel {
   final int id;
@@ -52,5 +48,6 @@ class CharacterModel {
 
   String toJson() => json.encode(toMap());
 
-  factory CharacterModel.fromJson(String source) => CharacterModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory CharacterModel.fromJson(String source) =>
+      CharacterModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

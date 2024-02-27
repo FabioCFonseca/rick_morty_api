@@ -49,14 +49,16 @@ class FavoritesPage extends StatelessWidget {
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                  character: provider.favoriteCharacters[index],);
+                                character: provider.favoriteCharacters[index],
+                              );
                             },
                           )
                         : ListView.builder(
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                  character: provider.favoriteCharacters[index],);
+                                character: provider.favoriteCharacters[index],
+                              );
                             },
                           ),
                   ),

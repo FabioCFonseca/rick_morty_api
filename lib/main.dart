@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
@@ -12,18 +11,20 @@ Future<void> main() async {
 
   await UserPreferences.init();
 
-  runApp(MultiProvider(
-    providers: [
-      // Character List Feature
-      Provider(create: (context) => CharactersListRepository()),
-      ChangeNotifierProvider(
-        create: (context) => CharacterListProvider(
-            repository: context.read<ICharacterRepository>(),)
-          ..controllerStart(),
-      ),
-    ],
-    child: const MyApp(),
-  ),);
+  runApp(
+    MultiProvider(
+      providers: [
+        // Character List Feature
+        Provider(create: (context) => CharactersListRepository()),
+        ChangeNotifierProvider(
+          create: (context) => CharacterListProvider(
+            repository: context.read<CharactersListRepository>(),
+          )..controllerStart(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -43,29 +44,30 @@ class MyApp extends StatelessWidget {
 
     final themeData = ThemeData(
       textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontFamily: 'Blippo',
-            fontSize: 32.0,
-            fontWeight: FontWeight.normal,
-            color: Colors.white,
-          ),
-          displayMedium: TextStyle(
-            fontFamily: 'Blippo',
-            fontSize: 24.0,
-            fontWeight: FontWeight.normal,
-            color: Colors.white,
-          ),
-          bodyMedium: TextStyle(
-            fontFamily: 'Blippo',
-            fontSize: 16.0,
-            color: Colors.white,
-          ),
-          labelLarge: TextStyle(
-            fontFamily: 'Blippo',
-            fontSize: 18.0,
-            fontWeight: FontWeight.w100,
-            color: Colors.black,
-          ),),
+        displayLarge: TextStyle(
+          fontFamily: 'Blippo',
+          fontSize: 32.0,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+        displayMedium: TextStyle(
+          fontFamily: 'Blippo',
+          fontSize: 24.0,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+        bodyMedium: TextStyle(
+          fontFamily: 'Blippo',
+          fontSize: 16.0,
+          color: Colors.white,
+        ),
+        labelLarge: TextStyle(
+          fontFamily: 'Blippo',
+          fontSize: 18.0,
+          fontWeight: FontWeight.w100,
+          color: Colors.black,
+        ),
+      ),
       colorScheme: colorScheme,
       scaffoldBackgroundColor: backgroundColor,
       cardTheme: CardTheme(

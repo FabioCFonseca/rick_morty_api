@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,7 @@ import 'package:rick_morty_flutter/src/features/character_details/presentation/u
 import 'package:rick_morty_flutter/src/features/character_details/provider/character_details_provider.dart';
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key, required this.selectedCharacter});
+  const DetailsPage({Key? key, required this.selectedCharacter});
 
   final int selectedCharacter;
 
@@ -46,17 +44,19 @@ class DetailsPage extends StatelessWidget {
         ),
         body: Consumer<CharacterDetailsProvider>(
           builder: (context, characterDetailsProvider, child) {
-            if (characterDetailsProvider.providerStatus ==
-                CharacterDetailsProviderState.loading) {
-              return LoadingInidicator();
-            } else if (characterDetailsProvider.providerStatus ==
-                CharacterDetailsProviderState.success) {
-              return CharacterDetailsSuccess();
-            } else {
-              return Center(
-                child: Text(characterDetailsProvider.appError.errorMessage),
-              );
+            Widget bodyWidget;
+            switch (characterDetailsProvider.providerStatus) {
+              case CharacterDetailsProviderState.loading:
+                bodyWidget = LoadingInidicator();
+              case CharacterDetailsProviderState.success:
+                bodyWidget = CharacterDetailsSuccess();
+              default:
+                bodyWidget = Center(
+                  child: Text(characterDetailsProvider.appError.errorMessage),
+                );
+                break;
             }
+            return bodyWidget;
           },
         ),
       ),

@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+// Todos os domínios são iguais nas diferentes soluções de state management
+// tanto a interface do repositório quanto o model permitindo o re uso do código
+// devido ao desacoplamento
+
 class CharacterDetailModel {
   final int id;
   final String name;
@@ -54,5 +58,6 @@ class CharacterDetailModel {
 
   String toJson() => json.encode(toMap());
 
-  factory CharacterDetailModel.fromJson(String source) => CharacterDetailModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory CharacterDetailModel.fromJson(String source) =>
+      CharacterDetailModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

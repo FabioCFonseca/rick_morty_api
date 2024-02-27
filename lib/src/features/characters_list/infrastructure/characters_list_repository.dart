@@ -24,8 +24,11 @@ class CharactersListRepository implements ICharacterRepository {
     try {
       final characters = <CharacterModel>[];
       for (int currentPage = 1; currentPage <= 42; currentPage++) {
-        final url = Uri.https('rickandmortyapi.com', '/api/character',
-            {'page': currentPage.toString()},);
+        final url = Uri.https(
+          'rickandmortyapi.com',
+          '/api/character',
+          {'page': currentPage.toString()},
+        );
         final response = await http.get(url);
 
         if (response.statusCode == 200) {
@@ -33,7 +36,7 @@ class CharactersListRepository implements ICharacterRepository {
           // ignore: avoid_dynamic_calls
           final characterData = parsedData['results'] as List;
           characters.addAll(
-              // ignore: argument_type_not_assignable
+            // ignore: argument_type_not_assignable
             characterData.map((element) => CharacterModel.fromMap(element)),
           );
         } else {

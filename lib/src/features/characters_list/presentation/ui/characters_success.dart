@@ -35,14 +35,16 @@ class CharactersSuccess extends StatelessWidget {
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
                         return CustomCard(
-                            character: provider.characters[index],);
+                          character: provider.characters[index],
+                        );
                       },
                     )
                   : ListView.builder(
                       itemCount: provider.characters.length,
                       itemBuilder: (context, index) {
                         return CustomCard(
-                            character: provider.characters[index],);
+                          character: provider.characters[index],
+                        );
                       },
                     ),
             ),

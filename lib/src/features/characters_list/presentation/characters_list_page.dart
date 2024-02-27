@@ -5,18 +5,24 @@ import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
 
 class CharactersListPage extends StatelessWidget {
-  const CharactersListPage({super.key});
+  const CharactersListPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CharacterListProvider>(
       builder: (context, provider, child) {
+        Widget statusResult;
+        switch (provider.providerStatus) {
+          case CharacterListProviderState.loading:
+            statusResult = const LoadingInidicator();
+          case CharacterListProviderState.success:
+            statusResult = const CharactersSuccess();
+          default:
+            statusResult = Center(child: Text(provider.appError.errorMessage));
+            break;
+        }
         return Scaffold(
-          body: provider.providerStatus == CharacterListProviderState.loading
-              ? const LoadingInidicator()
-              : provider.providerStatus == CharacterListProviderState.success
-                  ? const CharactersSuccess()
-                  : Center(child: Text(provider.appError.errorMessage)),
+          body: statusResult,
         );
       },
     );

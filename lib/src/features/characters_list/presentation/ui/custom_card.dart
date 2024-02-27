@@ -32,8 +32,10 @@ class CustomCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(character.name,
-                  style: Theme.of(context).textTheme.labelLarge,),
+              Text(
+                character.name,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
               const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,8 +43,10 @@ class CustomCard extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () =>
                         provider.goToDetails(context, character.id),
-                    child: Text('Details',
-                        style: Theme.of(context).textTheme.bodyMedium,),
+                    child: Text(
+                      'Details',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
                   GestureDetector(
                     onTap: () => provider.toggleFavorite(character),

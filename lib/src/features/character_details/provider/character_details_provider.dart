@@ -7,8 +7,10 @@ import 'package:rick_morty_flutter/src/features/character_details/domain/i_chara
 enum CharacterDetailsProviderState { loading, success, error }
 
 class CharacterDetailsProvider extends ChangeNotifier {
-  CharacterDetailsProvider(
-      {required this.selectedCharacter, required this.repository,});
+  CharacterDetailsProvider({
+    required this.selectedCharacter,
+    required this.repository,
+  });
 
   //REPOSITORY INSTANCE
   ICharacterDetailsRepository repository;

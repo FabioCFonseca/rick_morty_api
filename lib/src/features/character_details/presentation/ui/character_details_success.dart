@@ -49,8 +49,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                     const SizedBox(height: 25.0),
                     Row(
                       children: [
-                        const Icon(Icons.person,
-                            color: Color(0xFF70A2D6), size: 25.0,),
+                        const Icon(
+                          Icons.person,
+                          color: Color(0xFF70A2D6),
+                          size: 25.0,
+                        ),
                         const SizedBox(width: 8.0),
                         Text('Specie: ${provider.character.species}'),
                       ],
@@ -58,8 +61,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Row(
                       children: [
-                        const Icon(Icons.transgender,
-                            color: Color(0xFF70A2D6), size: 25.0,),
+                        const Icon(
+                          Icons.transgender,
+                          color: Color(0xFF70A2D6),
+                          size: 25.0,
+                        ),
                         const SizedBox(width: 8.0),
                         Text('Gender: ${provider.character.gender}'),
                       ],
@@ -67,8 +73,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Row(
                       children: [
-                        const Icon(Icons.location_on,
-                            color: Color(0xFF70A2D6), size: 25.0,),
+                        const Icon(
+                          Icons.location_on,
+                          color: Color(0xFF70A2D6),
+                          size: 25.0,
+                        ),
                         const SizedBox(width: 8.0),
                         Text('Origin: ${provider.character.origin}'),
                       ],
@@ -76,8 +85,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Row(
                       children: [
-                        const Icon(Icons.compare_arrows,
-                            color: Color(0xFF70A2D6), size: 25.0,),
+                        const Icon(
+                          Icons.compare_arrows,
+                          color: Color(0xFF70A2D6),
+                          size: 25.0,
+                        ),
                         const SizedBox(width: 8.0),
                         Text('Status: ${provider.character.status}'),
                       ],
@@ -85,8 +97,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Row(
                       children: [
-                        const Icon(Icons.contact_emergency_outlined,
-                            color: Color(0xFF70A2D6), size: 25.0,),
+                        const Icon(
+                          Icons.contact_emergency_outlined,
+                          color: Color(0xFF70A2D6),
+                          size: 25.0,
+                        ),
                         const SizedBox(width: 8.0),
                         Text('Type: ${provider.character.type}'),
                       ],

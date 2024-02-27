@@ -10,12 +10,14 @@ class UserPreferences {
       preferences = await SharedPreferences.getInstance();
 
   static Future<void> saveFavoriteCharactersToSharedPrefs(
-      String favoriteCharacters,) async {
+    String favoriteCharacters,
+  ) async {
     await preferences.setString(favoriteCharacters, favoriteCharacters);
   }
 
   static Future<void> removeFavoriteCharactersToSharedPrefs(
-      String favoriteCharacters,) async {
+    String favoriteCharacters,
+  ) async {
     await preferences.remove(favoriteCharacters);
   }
 

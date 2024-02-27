@@ -52,11 +52,13 @@ class CharacterListProvider extends ChangeNotifier {
     if (index == -1) {
       favoriteCharacters.add(character);
       UserPreferences.saveFavoriteCharactersToSharedPrefs(
-          '${character.id.toString()}',);
+        '${character.id.toString()}',
+      );
     } else {
       favoriteCharacters.removeAt(index);
       UserPreferences.removeFavoriteCharactersToSharedPrefs(
-          '${character.id.toString()}',);
+        '${character.id.toString()}',
+      );
     }
     notifyListeners();
   }
@@ -69,7 +71,7 @@ class CharacterListProvider extends ChangeNotifier {
   //DETAILS PAGE NAVIGATION
   void goToDetails(BuildContext context, int id) {
     Navigator.push(
-       context,
+      context,
       MaterialPageRoute(
         builder: (context) => DetailsPage(selectedCharacter: id),
       ),

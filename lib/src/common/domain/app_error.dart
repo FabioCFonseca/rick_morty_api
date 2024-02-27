@@ -1,4 +1,4 @@
-class AppError implements Exception {
+class AppError {
   final int statusCode;
   final String errorMessage;
 
@@ -14,7 +14,8 @@ class AppError implements Exception {
       case 404:
         message = 'Not found: The requested resource could not be found.';
       case 500:
-        message = 'Internal server error: The server encountered an unexpected error.';
+        message =
+            'Internal server error: The server encountered an unexpected error.';
       default:
         message = 'An unknown error occurred.';
         break;
