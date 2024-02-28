@@ -4,7 +4,6 @@ import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 
 import 'package:rick_morty_flutter/src/common/presentation/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
-import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -26,7 +25,7 @@ class FavoritesPage extends StatelessWidget {
                 children: [
                   AppSizes.large(),
                   const Text(
-                    'List of Characters',
+                    'List of Favorites Characters',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w500,

@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/common/presentation/custom_app_bar.dart';
 
 import 'package:rick_morty_flutter/src/common/presentation/loading.dart';
 import 'package:rick_morty_flutter/src/features/character_details/infrastructure/character_details_repository.dart';
@@ -21,42 +20,22 @@ class DetailsPage extends StatelessWidget {
         repository: CharactersDetailsRepository(),
       )..controllerStart(),
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 80,
-          forceMaterialTransparency: true,
-          centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 12),
-            // Check se app está no browser
-            child: kIsWeb
-                ? Image.asset(
-                    'assets/logo.png',
-                    height: 70,
-                  )
-                : CachedNetworkImage(
-                    imageUrl:
-                        'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    height: 70,
-                  ),
-          ),
-        ),
+        appBar: const CustomAppBar(),
         body: Consumer<CharacterDetailsProvider>(
           builder: (context, characterDetailsProvider, child) {
-            Widget bodyWidget;
+            Widget statusResult;
             switch (characterDetailsProvider.providerStatus) {
               case CharacterDetailsProviderState.loading:
-                bodyWidget = LoadingInidicator();
+                statusResult = const LoadingIndicator();
               case CharacterDetailsProviderState.success:
-                bodyWidget = CharacterDetailsSuccess();
+                statusResult = const CharacterDetailsSuccess();
               default:
-                bodyWidget = Center(
+                statusResult = Center(
                   child: Text(characterDetailsProvider.appError.errorMessage),
                 );
                 break;
             }
-            return bodyWidget;
+            return statusResult;
           },
         ),
       ),

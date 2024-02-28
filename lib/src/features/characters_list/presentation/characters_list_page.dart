@@ -14,16 +14,14 @@ class CharactersListPage extends StatelessWidget {
         Widget statusResult;
         switch (provider.providerStatus) {
           case CharacterListProviderState.loading:
-            statusResult = const LoadingInidicator();
+            statusResult = const LoadingIndicator();
           case CharacterListProviderState.success:
             statusResult = const CharactersSuccess();
           default:
             statusResult = Center(child: Text(provider.appError.errorMessage));
             break;
         }
-        return Scaffold(
-          body: statusResult,
-        );
+        return statusResult;        
       },
     );
   }
