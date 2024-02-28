@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
+import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
+import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -11,7 +12,7 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Consumer<CharacterListProvider>(
+    return Consumer<FavoritesListProvider>(
       builder: (context, provider, child) {
         return provider.favoriteCharacters.isEmpty
             ? Center(
@@ -57,7 +58,7 @@ class FavoritesPage extends StatelessWidget {
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                character: provider.favoriteCharacters[index],
+                                character: provider.favoriteCharacters[index] as FavoritesModel,
                               );
                             },
                           ),

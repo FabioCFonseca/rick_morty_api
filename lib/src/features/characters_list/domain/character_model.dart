@@ -1,21 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
+
 // ignore_for_file: hash_and_equals
 
 // Todos os domínios são iguais nas diferentes soluções de state management
 // tanto a interface do repositório quanto o model permitindo o re uso do código
 // devido ao desacoplamento
 
-class CharacterModel {
-  final int id;
-  final String name;
-  final String image;
+class CharacterModel extends FavoritesModel {
 
   const CharacterModel({
-    required this.id,
-    required this.name,
-    required this.image,
+    required super.id,
+    required super.name,
+    required super.image,
   });
 
   @override

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
+import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
 
 Future<void> main() async {
@@ -14,12 +15,14 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        //Favorites feature
+        ChangeNotifierProvider(create: (context) => FavoritesListProvider()),
         // Character List Feature
         Provider(create: (context) => CharactersListRepository()),
         ChangeNotifierProvider(
           create: (context) => CharacterListProvider(
             repository: context.read<CharactersListRepository>(),
-          )..controllerStart(),
+          )..controllerStart(context),
         ),
       ],
       child: const MyApp(),
