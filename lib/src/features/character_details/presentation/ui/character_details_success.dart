@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 
 import 'package:rick_morty_flutter/src/features/character_details/provider/character_details_provider.dart';
 
@@ -13,9 +14,7 @@ class CharacterDetailsSuccess extends StatelessWidget {
         return SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
+              AppSizes.large(),
               const Text(
                 'Characters Details',
                 style: TextStyle(
@@ -24,9 +23,7 @@ class CharacterDetailsSuccess extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              AppSizes.large(),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
@@ -36,17 +33,17 @@ class CharacterDetailsSuccess extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(provider.character.image),
                       ),
-                    const SizedBox(height: 16.0),
+                    AppSizes.medium(),
                     Text(
                       provider.character.name,
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    const SizedBox(height: 8.0),
+                    AppSizes.small(),
                     Text(
                       'ID: ${provider.character.id}',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
-                    const SizedBox(height: 25.0),
+                    AppSizes.medium(),
                     Row(
                       children: [
                         const Icon(
@@ -54,11 +51,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                           color: Color(0xFF70A2D6),
                           size: 25.0,
                         ),
-                        const SizedBox(width: 8.0),
+                        AppSizes.small(),
                         Text('Specie: ${provider.character.species}'),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                    AppSizes.small(),
                     Row(
                       children: [
                         const Icon(
@@ -66,11 +63,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                           color: Color(0xFF70A2D6),
                           size: 25.0,
                         ),
-                        const SizedBox(width: 8.0),
+                        AppSizes.small(),
                         Text('Gender: ${provider.character.gender}'),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                    AppSizes.small(),
                     Row(
                       children: [
                         const Icon(
@@ -78,11 +75,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                           color: Color(0xFF70A2D6),
                           size: 25.0,
                         ),
-                        const SizedBox(width: 8.0),
+                        AppSizes.small(),
                         Text('Origin: ${provider.character.origin}'),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                    AppSizes.small(),
                     Row(
                       children: [
                         const Icon(
@@ -90,11 +87,11 @@ class CharacterDetailsSuccess extends StatelessWidget {
                           color: Color(0xFF70A2D6),
                           size: 25.0,
                         ),
-                        const SizedBox(width: 8.0),
+                        AppSizes.small(),
                         Text('Status: ${provider.character.status}'),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                    AppSizes.small(),
                     Row(
                       children: [
                         const Icon(
@@ -102,16 +99,14 @@ class CharacterDetailsSuccess extends StatelessWidget {
                           color: Color(0xFF70A2D6),
                           size: 25.0,
                         ),
-                        const SizedBox(width: 8.0),
+                        AppSizes.small(),
                         Text('Type: ${provider.character.type}'),
                       ],
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              )
+              AppSizes.large()
             ],
           ),
         );

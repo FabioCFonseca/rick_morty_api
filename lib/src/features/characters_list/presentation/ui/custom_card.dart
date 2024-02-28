@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 import 'package:rick_morty_flutter/src/features/character_details/presentation/details_page.dart';
 
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
@@ -32,12 +33,12 @@ class CustomCard extends StatelessWidget {
                       const CircularProgressIndicator(),
                 ),
               ),
-              const SizedBox(height: 10),
+              AppSizes.small(),
               Text(
                 character.name,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
-              const SizedBox(height: 30),
+             AppSizes.large(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
@@ -15,9 +16,7 @@ class CharactersSuccess extends StatelessWidget {
       builder: (context, provider, child) {
         return Column(
           children: [
-            const SizedBox(
-              height: 30,
-            ),
+            AppSizes.large(),
             Text(
               'List of Characters',
               style: Theme.of(context).textTheme.displayLarge,

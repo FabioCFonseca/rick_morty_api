@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
@@ -23,9 +24,7 @@ class FavoritesPage extends StatelessWidget {
               )
             : Column(
                 children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  AppSizes.large(),
                   const Text(
                     'List of Characters',
                     style: TextStyle(
@@ -34,9 +33,7 @@ class FavoritesPage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  AppSizes.large(),
                   Expanded(
                     child: screenWidth > 720
                         ? GridView.builder(
