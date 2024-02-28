@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:rick_morty_bloc/src/common/consts/spacers.dart';
+import 'package:rick_morty_bloc/src/common/presentation/custom_card.dart';
 import 'package:rick_morty_bloc/src/features/catalog/bloc/catalog/catalog_bloc.dart';
-import 'package:rick_morty_bloc/src/features/catalog/presentation/ui/custom_card.dart';
 
 class CatalogSuccess extends StatelessWidget {
   const CatalogSuccess({super.key});

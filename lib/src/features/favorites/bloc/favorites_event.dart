@@ -7,9 +7,3 @@ class FavoritesAddCharacterEvent extends FavoritesEvents {
 
   FavoritesAddCharacterEvent({required this.character});
 }
-
-class FavoritesRemoveCharacterEvent extends FavoritesEvents {
-  final FavoritesModel character;
-
-  FavoritesRemoveCharacterEvent({required this.character});
-}

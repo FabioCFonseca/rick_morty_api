@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty_bloc/src/features/catalog/bloc/bottomNavBar/bnb_bloc.dart';
 import 'package:rick_morty_bloc/src/features/catalog/bloc/catalog/catalog_bloc.dart';
 import 'package:rick_morty_bloc/src/features/details/bloc/details_bloc.dart';
 import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart';
+import 'package:rick_morty_bloc/src/utils/user_preferences.dart';
 
 import 'src/common/presentation/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await UserPreferences.init();
   runApp(const MyApp());
 }
 
@@ -72,7 +75,6 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) =>
               CatalogBloc()..add(CatalogInitialFetchEvent()),
         ),
-        BlocProvider<BnbBloc>(create: (BuildContext context) => BnbBloc()),
         BlocProvider<FavoritesBloc>(
             create: (BuildContext context) => FavoritesBloc()),
         BlocProvider<DetailsBloc>(

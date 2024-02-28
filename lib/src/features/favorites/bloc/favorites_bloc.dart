@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty_bloc/src/features/favorites/model/favorites_model.dart';
+import 'package:rick_morty_bloc/src/utils/user_preferences.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';
@@ -9,23 +10,19 @@ part 'favorites_state.dart';
 class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesState> {
   FavoritesBloc() : super(FavoritesInitialState(favorites: [])) {
     on<FavoritesAddCharacterEvent>(favoritesAddCharacterEvent);
-    on<FavoritesRemoveCharacterEvent>(favoritesRemoveCharacterEvent);
   }
 
   FutureOr<void> favoritesAddCharacterEvent(
       FavoritesAddCharacterEvent event, Emitter<FavoritesState> emit) {
     if (state.favorites.contains(event.character)) {
       state.favorites.remove(event.character);
+      UserPreferences.removeFavoriteCharactersToSharedPrefs('${event.character.id.toString()}');
+      UserPreferences.printCache();
     } else {
       state.favorites.add(event.character);
+      UserPreferences.saveFavoriteCharactersToSharedPrefs('${event.character.id.toString()}');
+      UserPreferences.printCache();
     }
-    emit(FavoritesUpdatedState(favorites: state.favorites));
-    print(state.favorites);
-  }
-
-  FutureOr<void> favoritesRemoveCharacterEvent(
-      FavoritesRemoveCharacterEvent event, Emitter<FavoritesState> emit) {
-    state.favorites.remove(event.character);
     emit(FavoritesUpdatedState(favorites: state.favorites));
   }
 }

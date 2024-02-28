@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart';
 import 'package:rick_morty_bloc/src/features/favorites/model/favorites_model.dart';
 
-import '../../../details/presentation/details_page.dart';
+import '../../features/details/presentation/details_page.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({Key? key, required this.character}) : super(key: key);
