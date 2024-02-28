@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart';
+import 'package:rick_morty_bloc/src/features/favorites/model/favorites_model.dart';
 
 import '../../../details/presentation/details_page.dart';
-import '../../bloc/favorites/favorites_bloc.dart';
-import '../../domain/catalog.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({Key? key, required this.character}) : super(key: key);
 
-  final CatalogModel character;
+  final FavoritesModel character;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,12 @@ class CustomCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Container(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(80),
-                child: Image.network(
-                  character.image,
-                  height: 150,
-                  width: 150,
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(80),
+              child: Image.network(
+                character.image,
+                height: 150,
+                width: 150,
               ),
             ),
             const SizedBox(height: 10),

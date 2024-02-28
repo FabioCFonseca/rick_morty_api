@@ -3,13 +3,13 @@ part of 'favorites_bloc.dart';
 abstract class FavoritesEvents {}
 
 class FavoritesAddCharacterEvent extends FavoritesEvents {
-  final CatalogModel character;
+  final FavoritesModel character;
 
   FavoritesAddCharacterEvent({required this.character});
 }
 
 class FavoritesRemoveCharacterEvent extends FavoritesEvents {
-  final CatalogModel character;
+  final FavoritesModel character;
 
   FavoritesRemoveCharacterEvent({required this.character});
 }

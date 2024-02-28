@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty_bloc/src/features/catalog/bloc/bottomNavBar/bnb_bloc.dart';
 import 'package:rick_morty_bloc/src/features/catalog/bloc/catalog/catalog_bloc.dart';
-import 'package:rick_morty_bloc/src/features/catalog/bloc/favorites/favorites_bloc.dart';
 import 'package:rick_morty_bloc/src/features/details/bloc/details_bloc.dart';
+import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart';
 
 import 'src/common/presentation/home_page.dart';
 
@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: themeData,
-        home: HomePage(),
+        home: const HomePage(),
       ),
     );
   }

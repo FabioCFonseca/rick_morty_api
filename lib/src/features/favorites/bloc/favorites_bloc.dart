@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty_bloc/src/features/catalog/domain/catalog.dart';
+import 'package:rick_morty_bloc/src/features/favorites/model/favorites_model.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';

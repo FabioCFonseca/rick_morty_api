@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_morty_bloc/src/common/presentation/custom_app_bar.dart';
 
 import '../bloc/details_bloc.dart';
 import 'ui/details_success.dart';
@@ -25,19 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        forceMaterialTransparency: true,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 12),
-          child: CachedNetworkImage(
-            imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-            errorWidget: (context, url, error) => Icon(Icons.error),
-            height: 70,
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: BlocBuilder<DetailsBloc, DetailsState>(
         builder: (context, state) {
           switch (state.runtimeType) {

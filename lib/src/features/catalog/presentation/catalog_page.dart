@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../domain/catalog.dart';
-import 'ui/custom_card.dart';
+import 'package:rick_morty_bloc/src/common/presentation/custom_app_bar.dart';
+import 'package:rick_morty_bloc/src/common/presentation/loading.dart';
+import 'package:rick_morty_bloc/src/features/catalog/bloc/catalog/catalog_bloc.dart';
+import 'package:rick_morty_bloc/src/features/catalog/presentation/ui/catalog_success.dart';
 
 class CatalogPage extends StatelessWidget {
-  final List<CatalogModel> catalog;
 
-  const CatalogPage({super.key, required this.catalog});
+  const CatalogPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        Text(
-          'List of Characters',
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
-        Expanded(
-          child: ListView.builder(
-              itemCount: catalog.length,
-              itemBuilder: (context, index) {
-                return CustomCard(
-                  character: catalog[index],
-                );
-              }),
-        )
-      ],
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: BlocBuilder<CatalogBloc, CatalogState>(
+        builder: (context, state) {
+          switch (state.runtimeType) {
+            case CatalogLoadingState:
+              return const LoadingIndicator();
+            case CatalogSuccessState:
+              return const CatalogSuccess();
+            default:
+              return const Text('error');
+          }
+        },
+      ),
     );
   }
 }
