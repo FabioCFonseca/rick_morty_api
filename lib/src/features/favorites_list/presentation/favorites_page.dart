@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_morty_flutter/src/common/consts/spacers.dart';
 
-import 'package:rick_morty_flutter/src/features/characters_list/presentation/ui/custom_card.dart';
+import 'package:rick_morty_flutter/src/common/presentation/custom_card.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
 
@@ -35,31 +35,20 @@ class FavoritesPage extends StatelessWidget {
                   ),
                   AppSizes.large(),
                   Expanded(
-                    child: screenWidth > 720
-                        ? GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              mainAxisExtent: 350,
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10.0,
-                              mainAxisSpacing: 10.0,
-                            ),
-                            itemCount: provider.favoriteCharacters.length,
-                            itemBuilder: (context, index) {
-                              return CustomCard(
-                                character: provider.favoriteCharacters[index],
-                              );
-                            },
-                          )
-                        : ListView.builder(
-                            itemCount: provider.favoriteCharacters.length,
-                            itemBuilder: (context, index) {
-                              return CustomCard(
-                                character: provider.favoriteCharacters[index]
-                                    as FavoritesModel,
-                              );
-                            },
-                          ),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 350,
+                        crossAxisCount: screenWidth > 720 ? 2 : 1,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                      ),
+                      itemCount: provider.favoriteCharacters.length,
+                      itemBuilder: (context, index) {
+                        return CustomCard(
+                          character: provider.favoriteCharacters[index],
+                        );
+                      },
+                    ),
                   ),
                 ],
               );

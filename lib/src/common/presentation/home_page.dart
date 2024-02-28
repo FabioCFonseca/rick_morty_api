@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rick_morty_flutter/src/common/presentation/custom_app_bar.dart';
 import 'package:rick_morty_flutter/src/common/presentation/custom_bottom_nav_bar.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/presentation/characters_list_page.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/presentation/favorites_page.dart';
+import 'package:rick_morty_flutter/src/features/favorites_list/presentation/favorites_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
