@@ -38,7 +38,7 @@ class CustomCard extends StatelessWidget {
                 character.name,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
-             AppSizes.large(),
+              AppSizes.large(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,7 +57,7 @@ class CustomCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      provider.toggleFavorite(character);                      
+                      provider.toggleFavorite(character);
                     },
                     child: Icon(
                       provider.favoriteCharacters.contains(character)

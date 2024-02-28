@@ -10,7 +10,6 @@ import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_
 // devido ao desacoplamento
 
 class CharacterModel extends FavoritesModel {
-
   const CharacterModel({
     required super.id,
     required super.name,

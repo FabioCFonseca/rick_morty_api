@@ -37,7 +37,9 @@ class CharacterListProvider extends ChangeNotifier {
         characters = success;
         for (final character in characters) {
           if (UserPreferences.getFavorite('${character.id}')) {
-            Provider.of<FavoritesListProvider>(context, listen: false).favoriteCharacters.add(character);
+            Provider.of<FavoritesListProvider>(context, listen: false)
+                .favoriteCharacters
+                .add(character);
           }
         }
         providerStatus = CharacterListProviderState.success;

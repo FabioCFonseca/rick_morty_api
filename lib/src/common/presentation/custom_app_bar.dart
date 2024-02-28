@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     const isWeb = kIsWeb;
-    
+
     return AppBar(
       toolbarHeight: 80,
       forceMaterialTransparency: true,
@@ -24,10 +24,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 height: 70,
               )
             : CachedNetworkImage(
-                imageUrl:
-                    'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.error),
+                imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 height: 70,
               ),
       ),

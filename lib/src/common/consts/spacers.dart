@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 class AppSizes {
-
   static const double spacerSmall = 8.0;
   static const double spacerMedium = 16.0;
   static const double spacerLarge = 25.0;

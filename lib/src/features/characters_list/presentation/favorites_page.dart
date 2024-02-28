@@ -55,7 +55,8 @@ class FavoritesPage extends StatelessWidget {
                             itemCount: provider.favoriteCharacters.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                character: provider.favoriteCharacters[index] as FavoritesModel,
+                                character: provider.favoriteCharacters[index]
+                                    as FavoritesModel,
                               );
                             },
                           ),
