@@ -53,7 +53,7 @@ class CustomCard extends StatelessWidget {
                           state.favorites.contains(character)
                               ? Icons.favorite
                               : Icons.favorite_border_outlined,
-                          color: Color(0xffA333C8),
+                          color: const Color(0xffA333C8),
                           size: 30,
                         ),
                         onTap: () => BlocProvider.of<FavoritesBloc>(context)

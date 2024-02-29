@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty_bloc/src/features/catalog/bloc/catalog/catalog_bloc.dart';
+import 'package:rick_morty_bloc/src/features/catalog/infrastructure/catalog_repository.dart';
 import 'package:rick_morty_bloc/src/features/details/bloc/details_bloc.dart';
+import 'package:rick_morty_bloc/src/features/details/infrastructure/details_repository.dart';
 import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart';
 import 'package:rick_morty_bloc/src/utils/user_preferences.dart';
 
@@ -73,12 +75,14 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<CatalogBloc>(
           create: (BuildContext context) =>
-              CatalogBloc()..add(CatalogInitialFetchEvent()),
+              CatalogBloc(repository: CatalogRepository())
+                ..add(CatalogInitialFetchEvent()),
         ),
         BlocProvider<FavoritesBloc>(
             create: (BuildContext context) => FavoritesBloc()),
         BlocProvider<DetailsBloc>(
-            create: (BuildContext context) => DetailsBloc()),
+            create: (BuildContext context) =>
+                DetailsBloc(repository: DetailsRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

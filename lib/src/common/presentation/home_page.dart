@@ -1,9 +1,10 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:rick_morty_bloc/src/common/presentation/custom_app_bar.dart';
 import 'package:rick_morty_bloc/src/common/presentation/custom_bottom_nav_bar.dart';
 import 'package:rick_morty_bloc/src/features/catalog/presentation/catalog_page.dart';
 import 'package:rick_morty_bloc/src/features/favorites/presentation/favorites_page.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});

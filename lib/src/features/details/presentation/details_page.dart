@@ -37,7 +37,7 @@ class _DetailsPageState extends State<DetailsPage> {
               final detailsState = state as DetailsSuccessState;
               return DetailsSuccess(character: detailsState.characterDetail);
             default:
-              return Text('error');
+              return const Text('error');
           }
         },
       ),

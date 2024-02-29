@@ -26,8 +26,4 @@ class UserPreferences {
       return false;
     }
   }
-
-  static void printCache() {
-    print(preferences.getString('favoriteCharacters'));
-  }
 }

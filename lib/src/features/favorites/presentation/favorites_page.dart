@@ -5,7 +5,7 @@ import 'package:rick_morty_bloc/src/features/favorites/bloc/favorites_bloc.dart'
 import '../../../common/presentation/custom_card.dart';
 
 class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({Key? key});
+  const FavoritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {

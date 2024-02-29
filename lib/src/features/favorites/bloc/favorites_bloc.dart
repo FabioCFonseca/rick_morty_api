@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,12 +18,12 @@ class FavoritesBloc extends Bloc<FavoritesEvents, FavoritesState> {
       FavoritesAddCharacterEvent event, Emitter<FavoritesState> emit) {
     if (state.favorites.contains(event.character)) {
       state.favorites.remove(event.character);
-      UserPreferences.removeFavoriteCharactersToSharedPrefs('${event.character.id.toString()}');
-      UserPreferences.printCache();
+      UserPreferences.removeFavoriteCharactersToSharedPrefs(
+          '${event.character.id.toString()}');
     } else {
       state.favorites.add(event.character);
-      UserPreferences.saveFavoriteCharactersToSharedPrefs('${event.character.id.toString()}');
-      UserPreferences.printCache();
+      UserPreferences.saveFavoriteCharactersToSharedPrefs(
+          '${event.character.id}');
     }
     emit(FavoritesUpdatedState(favorites: state.favorites));
   }
