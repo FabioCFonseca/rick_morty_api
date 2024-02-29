@@ -1,54 +1,58 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
-import 'package:get/get.dart';
 
-import '../../features/catalog/application/catalog_controller.dart';
-import '../../features/catalog/presentation/catalog_page.dart';
-import '../../features/catalog/presentation/favorites_page.dart';
+import 'package:rick_morty_getx/src/common/presentation/custom_appbar.dart';
+import 'package:rick_morty_getx/src/common/presentation/custom_bottom_navbar.dart';
+import 'package:rick_morty_getx/src/features/catalog/presentation/catalog_page.dart';
+import 'package:rick_morty_getx/src/features/favorites/presentation/favorites_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final CatalogController controller = Get.find<CatalogController>();
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  late final PageController _pageController;
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        forceMaterialTransparency: true,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 12),
-          child: CachedNetworkImage(
-            imageUrl: 'https://www.vhv.rs/dpng/f/430-4305710_rick-png.png',
-            errorWidget: (context, url, error) => const Icon(FontAwesome.exclamation_circle),
-            height: 70,
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: PageView(
-        controller: controller.pageController,
+        controller: _pageController,
         children: const [
           CatalogPage(),
           FavoritesPage(),
         ],
       ),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            elevation: 50,
-            iconSize: 26,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: controller.currentPage.value,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(FontAwesome.home), label: ''),
-              BottomNavigationBarItem(
-                  icon: Icon(FontAwesome.heart), label: ''),
-            ],
-            onTap: controller.setPage,
-          )),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentPage: currentPage,
+        //Callback do filho para o pai
+        onTap: (index) {
+          setState(() {
+            currentPage = index;
+          });
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.ease,
+          );
+        },
+      ),
     );
   }
 }

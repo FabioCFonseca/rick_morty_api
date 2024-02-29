@@ -6,6 +6,8 @@ import 'package:rick_morty_getx/src/common/domain/app_error.dart';
 import 'package:rick_morty_getx/src/features/catalog/domain/catalog_model.dart';
 import 'package:rick_morty_getx/src/features/catalog/domain/i_catalog_repository.dart';
 
+
+
 // Chamada API implementa a interface do repositório no domínio
 // se comunicando com a mesma somente através de interface e
 // se desacoplando das camadas restantes
@@ -32,8 +34,10 @@ class CatalogRepository implements ICatalogRepository {
 
         if (response.statusCode == 200) {
           final parsedData = json.decode(response.body);
+          // ignore: avoid_dynamic_calls
           final characterData = parsedData['results'] as List;
           characters.addAll(
+            // ignore: argument_type_not_assignable
             characterData.map((element) => CatalogModel.fromMap(element)),
           );
         } else {
@@ -47,4 +51,3 @@ class CatalogRepository implements ICatalogRepository {
     }
   }
 }
-

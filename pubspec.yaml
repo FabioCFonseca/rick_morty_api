@@ -34,3 +34,5 @@ flutter:
       fonts:
         - asset: fonts/blippo.ttf
  
+  assets:
+  - assets/logo.png

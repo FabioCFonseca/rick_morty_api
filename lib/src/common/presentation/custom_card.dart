@@ -3,18 +3,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rick_morty_getx/src/features/catalog/application/catalog_controller.dart';
-import 'package:rick_morty_getx/src/features/catalog/domain/catalog_model.dart';
-import 'package:rick_morty_getx/src/features/details/presentation/details_page.dart';
 
-class CustomCard extends StatelessWidget {
+import 'package:rick_morty_getx/src/features/details/presentation/details_page.dart';
+import 'package:rick_morty_getx/src/features/favorites/application/favorites_controller.dart';
+import 'package:rick_morty_getx/src/features/favorites/model/favorites_model.dart';
+
+class CustomCard extends GetWidget<FavoritesController> {
   const CustomCard({Key? key, required this.character}) : super(key: key);
 
-  final CatalogModel character;
+  final FavoritesModel character;
 
   @override
   Widget build(BuildContext context) {
-    final CatalogController controller = Get.find<CatalogController>();
 
     return Obx(() {
       return Card(

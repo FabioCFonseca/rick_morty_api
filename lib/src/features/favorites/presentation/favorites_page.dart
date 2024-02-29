@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_morty_getx/src/common/consts/spacers.dart';
 import 'package:rick_morty_getx/src/common/presentation/custom_card.dart';
+import 'package:rick_morty_getx/src/features/favorites/application/favorites_controller.dart';
 
-import 'package:rick_morty_getx/src/features/catalog/application/catalog_controller.dart';
 
-class CatalogSuccess extends GetWidget<CatalogController> {
-  const CatalogSuccess({super.key});
+class FavoritesPage extends GetWidget<FavoritesController> {
+  const FavoritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CatalogSuccess extends GetWidget<CatalogController> {
         children: [
           AppSizes.small(),
           Text(
-            'List of Characters',
+            'List of Favorites Characters',
             style: Theme.of(context).textTheme.displayLarge,
           ),
           Expanded(
@@ -29,10 +29,10 @@ class CatalogSuccess extends GetWidget<CatalogController> {
                 mainAxisSpacing: 10.0,
               ),
               itemCount:
-                  controller.catalog.length, // Access controller directly
+                  controller.favorites.length, // Access controller directly
               itemBuilder: (context, index) {
                 return CustomCard(
-                  character: controller.catalog[index],
+                  character: controller.favorites[index],
                 );
               },
             ),
